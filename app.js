@@ -1,13 +1,18 @@
 const express = require('express');
 const app = express();
+const oauth = require('./tools/oauth');
 
 
 app.use(express.static('public', {etag:false, maxAge:'1d'}));
 
 app.get('/oauthLogin', function(req, res) {
     let code = req.query.code;
+    console.log('Code--->', code);
     if(code) {
-
+        oauth.fetchAT(code, function(body) {
+            console.log('Body->', body);
+            res.json(body);
+        })
     } else {
         res.end('非法的URL!');
     }
