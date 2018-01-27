@@ -3,7 +3,14 @@ const app = express();
 const oauth = require('./tools/oauth');
 
 
-app.use(express.static('public', {etag:false, maxAge:'1d'}));
+app.use(express.static('public', {etag:false, maxAge:'1d', index:false}));
+
+app.set('views', './views');
+app.set('view engine', 'pug')
+
+app.get('/', function(req, res) {
+    res.render('index');
+})
 
 app.get('/oauthLogin', function(req, res) {
     let code = req.query.code;
