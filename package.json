@@ -4,7 +4,11 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "pug": "^2.0.0-rc.4",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "connect-redis": "^3.3.3"
   }
 }
