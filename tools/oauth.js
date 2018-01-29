@@ -1,7 +1,7 @@
 const request = require('request');
 const config = require('../config/app');
 
-function fetchAT(code, fn) {
+function fetchAT(code, fn, errfn) {
     return request({
         url : config.fetchAT,
         timeout: 20 * 1000,
@@ -18,6 +18,13 @@ function fetchAT(code, fn) {
         if(!err) {
             if(response.statusCode === 200 && body) {
                 fn&&fn(body);
+            } else {
+                errfn && errfn({
+                    statusCode :  response.statusCode,
+                    error: body.error,
+                    error_description : body.error_description
+                })
+                console.log('Response code not 200', response.statusCode, response.body, response.headers);
             }
         } else {
             console.log('Request Error', err);
