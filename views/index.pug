@@ -1,5 +1,25 @@
 //- index.pug
 extends layout.pug
 block content
-  .app
-    a(class='button is-primary',href=loginUrl) 点这里登录
+  // Main container
+  .container
+    nav.level
+      // Left side
+      .level-left
+        .level-item
+          img(src='/images/logo.svg')
+        .level-item
+          .field.has-addons
+            p.control
+              input(class='input',type='text',placeholder='Find a domain')
+            p.control
+              button(class='button') Search
+      // Right side
+      .level-right
+        if isLogin
+          p.level-item #{loginUser.info.name}
+          p.level-item 3个域名
+          p.level-item: a(class='button',href='/logout') 退出
+        else
+          p.level-item.heading 请先登录吧:)
+          p.level-item: a(class='button is-success',href=loginUrl) 登录

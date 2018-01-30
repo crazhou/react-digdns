@@ -5,6 +5,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const redisOption = require('./config/redis');
 const appOption = require('./config/app');
+const _ = require('lodash');
 
 app.set('trust proxy', 1) // Trust first proxy
 
@@ -28,11 +29,45 @@ app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
     let data = {
-        loginUrl:appOption.oauthURL,
-        isLogin : req.session.isLogin
-    }
+        loginUrl:appOption.oauthURL
+    };
+    _.extend(data, req.session);
+
     res.render('index', data);
+});
+
+// 调试方法，显示真实的会话ID 还有 刷新access_token
+app.get('/dump', function(req, res) {
+    var query = req.query;
+    if('sessionId' in query) {
+        res.send('SessionId->'+req.sessionID);
+        return;
+    }
+
+    if('refresh' in query) {
+        
+        var rf = req.session.loginUser.refresh_token;
+
+        oauth.refreshToken(rf, function(body) {
+            req.session.loginUser = body;
+            res.json(body);
+        }, function(errobj) {
+            res.send(`error:${errobj.error}, errorDetail:${errobj.error_description}`);
+        })
+        return;
+    }
+
+    res.json(req.session.loginUser);
+    
 })
+
+app.get('/logout', function(req, res) {
+    req.session.isLogin = false;
+    delete req.session.loginUser;
+    req.session.destroy(function(){
+        res.redirect('/?isLogin=false');
+    })
+});
 
 app.get('/oauthLogin', function(req, res) {
     let code = req.query.code;
@@ -41,7 +76,7 @@ app.get('/oauthLogin', function(req, res) {
         oauth.fetchAT(code, function(body) {
             req.session.isLogin = true;
             req.session.loginUser = body;
-            res.json(body);
+            res.redirect('/?isLogin=true')
         }, function(errobj) {
             res.send(`error:${errobj.error}, errorDetail:${errobj.error_description}`);
         })

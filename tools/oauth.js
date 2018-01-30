@@ -32,13 +32,13 @@ function fetchAT(code, fn, errfn) {
     });
 }
 
-function refreshToken(rt) {
+function refreshToken(rt, fn, errfn) {
     return request({
         url : config.fetchAT,
         timeout: 20 * 1000,
         json:true,
         method:'POST',
-        form : {
+        qs : {
             refresh_token:rt,
             grant_type : 'refresh_token',
         }
@@ -46,6 +46,14 @@ function refreshToken(rt) {
         if(!err) {
             if(response.statusCode === 200 && body) {
                 fn&&fn(body);
+            } else {
+                errfn && errfn({
+                    statusCode :  response.statusCode,
+                    error: body.error,
+                    error_description : body.error_description
+                })
+                console.log('Bussiness Error', response.statusCode, body)
+
             }
         } else {
             console.log('Request Error', err);
