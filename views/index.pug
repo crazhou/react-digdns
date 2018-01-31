@@ -23,3 +23,6 @@ block content
         else
           p.level-item.heading 请先登录吧:)
           p.level-item: a(class='button is-success',href=loginUrl) 登录
+  - var infoStr = JSON.stringify(loginUser.info);
+  script.
+    var Loginuser = !{infoStr}
