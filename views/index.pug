@@ -23,6 +23,8 @@ block content
         else
           p.level-item.heading 请先登录吧:)
           p.level-item: a(class='button is-success',href=loginUrl) 登录
-  - var infoStr = JSON.stringify(loginUser.info);
+  - if(loginUser) { var infoStr = JSON.stringify(loginUser) } else { var infoStr = 'false'} ;
   script.
     var Loginuser = !{infoStr}
+  script(src='https://unpkg.com/axios@0.17.1/dist/axios.min.js')
+  script(src='/js/rune.js')

@@ -3,10 +3,14 @@
   "version": "1.2.1",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "lodash": "^4.17.4",
     "pug": "^2.0.0-rc.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "^1.1.0",
     "request": "^2.83.0"
   },
   "devDependencies": {
