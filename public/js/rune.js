@@ -1,5 +1,7 @@
-(function(){
-  
+(function() {
+  function $(_) {
+    return document.getElementById(_);
+  }
 
   function fetchDomains(token) {
     return axios({
@@ -15,7 +17,10 @@
 
   if(Loginuser && Loginuser.access_token) {
     fetchDomains(Loginuser.access_token).then(function(resp) {
-      console.log('RESP->', resp)
+      if(resp.status === 200 && resp.data) {
+        var total = resp.data.meta.total;
+        $('countDo').innerHTML = total + '个域名';
+      }
     })
   }
 })();

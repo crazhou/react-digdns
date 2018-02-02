@@ -18,7 +18,7 @@ block content
       .level-right
         if isLogin
           p.level-item #{loginUser.info.name}
-          p.level-item 3个域名
+          p.level-item#countDo 0个域名
           p.level-item: a(class='button',href='/logout') 退出
         else
           p.level-item.heading 请先登录吧:)

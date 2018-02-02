@@ -20,7 +20,7 @@ app.use(session({
 
 app.use(express.static('public', {
     etag:false,
-    maxAge:'1d',
+    maxAge:0,
     index:false
 }));
 
