@@ -1,19 +1,20 @@
-import { createStore } from 'redux'
+import React from 'react';
 
-function todos(state = [], action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return state.concat([action.text])
-    default:
-      return state;
-  }
-}
+import { render } from 'react-dom';
 
-let store = createStore(todos, ['Use Redux'])
+import { createStore } from 'redux';
 
-store.dispatch({
-  type: 'ADD_TODO',
-  text : 'Read the docs'
-})
+import reducers from './reducers/index';
 
-console.log(store.getState());
+import { Provider } from 'react-redux';
+
+import App from './containers/App'
+
+const store = createStore(reducers);
+
+render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+document.getElementById('root')
+)

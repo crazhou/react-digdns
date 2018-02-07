@@ -1,14 +1,9 @@
-import { createStore } from 'redux'
-import reducer from './reducers/index'
+import React from 'react'
 
-let store = createStore(reducer)
+class App extends React.Component {
+  render() {
+    return <h1>Hello App.js</h1>;
+  }
+}
 
-console.log('State : ', store.getState())
-
-
-store.dispatch({
-  type : 'ADD_TODO',
-  text: 'Use Redux'
-})
-
-console.log('new Store : ', store.getState())
+export default App
