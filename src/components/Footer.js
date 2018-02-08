@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 class Footer extends React.Component {
   renderFilter(filter, name) {
@@ -7,29 +7,30 @@ class Footer extends React.Component {
     }
 
     return (
-      <a href='#' onCLick={ e=> {
-        e.preventDefault();
-        this.props.onFilterChange(filter)
-      }}>
-      {name}
+      <a
+        href="#"
+        onClick={e => {
+          e.preventDefault();
+          this.props.onFilterChange(filter);
+        }}
+      >
+        {name}
       </a>
-    )
+    );
   }
 
   render() {
     return (
       <p>
-        Show:
-        {' '}
-        {this.renderFilter('SHOW_ALL', 'ALL')}
-        {',  '}
-        {this.renderFilter('SHOW_COMPLETED', 'Completed')}
-        {',  '}
-        {this.renderFilter('SHOW_ACTIVE', 'Active')}
+        Show: {this.renderFilter("SHOW_ALL", "ALL")}
+        {",  "}
+        {this.renderFilter("SHOW_COMPLETED", "Completed")}
+        {",  "}
+        {this.renderFilter("SHOW_ACTIVE", "Active")}
         .
       </p>
-    )
+    );
   }
 }
 
-export default Footer
+export default Footer;
