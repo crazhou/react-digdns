@@ -3,9 +3,20 @@ import React from "react";
 class AddTodo extends React.Component {
   render() {
     return (
-      <div>
-        <input type="text" ref="input" onKeyUp={e => this.handleKeyUp(e)} />
-        <button onClick={e => this.handleClick(e)}>Add</button>
+      <div className="field has-addons">
+        <div className="control">
+          <input
+            type="text"
+            className="input"
+            ref="input"
+            onKeyUp={e => this.handleKeyUp(e)}
+          />
+        </div>
+        <div className="control">
+          <button onClick={e => this.handleClick(e)} className="button is-info">
+            Add
+          </button>
+        </div>
       </div>
     );
   }

@@ -16,15 +16,15 @@ class App extends React.Component {
     return (
       <div>
         <AddTodo onAddClick={text => dispatch(addTodo(text))} />
-        <TodoList
-          todos={visibleTodos}
-          onTodoClick={index => dispatch(toggleTodo(index))}
-        />
         <Footer
           filter={visibilityFilter}
           onFilterChange={nextFilter =>
             dispatch(setVisibilityFilter(nextFilter))
           }
+        />
+        <TodoList
+          todos={visibleTodos}
+          onTodoClick={index => dispatch(toggleTodo(index))}
         />
       </div>
     );
