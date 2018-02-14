@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+/*
+ * value 当前值, onChange 选择器的变化事件， options 全部的选项
+ */
 class Picker extends React.Component {
   render() {
     const { value, onChange, options } = this.props;
