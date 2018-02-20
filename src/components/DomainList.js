@@ -8,7 +8,7 @@ class DomainList extends React.Component {
   render() {
     const { dispatch } = this.props;
     return (
-      <table className="table is-fullwidth">
+      <table className="table is-fullwidth is-hoverable">
         <thead>
           <tr>
             <th width="40%">域名</th>

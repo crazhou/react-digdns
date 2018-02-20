@@ -21,7 +21,7 @@ const domains = (state = { isFetching: false, list: []}, action) => {
     }
 }
 
-const modalZonefile = ( state = { isActive: false, text: ''}, action) => {
+const modalZonefile = ( state = { isActive: false, zone_file: ''}, action) => {
     switch(action.type) {
         case SHOW_ZONEFILE:
         return Object.assign({}, state, {
