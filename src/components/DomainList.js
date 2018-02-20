@@ -5,22 +5,23 @@ import PropTypes from "prop-types";
 class DomainList extends React.Component {
   render() {
     return (
-      <table className="table">
+      <table className="table is-fullwidth">
         <thead>
           <tr>
-            <th>域名</th>
-            <th>TTL</th>
-            <th>操作</th>
+            <th width="40%">域名</th>
+            <th width="30%">TTL</th>
+            <th width="30%">操作</th>
           </tr>
         </thead>
         <tbody>
-          {this.props.doamins.map(domain => (
+          {this.props.domains.map(domain => 
             <DomainItem
+              key={domain.name}
               name={domain.name}
               ttl={domain.ttl}
               zone_file={domain.zone_file}
             />
-          ))}
+          )}
         </tbody>
       </table>
     );
@@ -30,3 +31,5 @@ class DomainList extends React.Component {
 DomainList.propTypes = {
   domains: PropTypes.array
 };
+
+export default DomainList

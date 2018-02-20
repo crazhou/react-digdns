@@ -8,8 +8,9 @@ class DomainItem extends React.Component {
         <td>{this.props.name}</td>
         <td>{this.props.ttl}</td>
         <td>
+          <div className="buttons">
           <button
-            className="button is-primary"
+            className="button is-info is-small"
             onClick={() => {
               this.handelMange(this.props.name);
             }}
@@ -17,21 +18,22 @@ class DomainItem extends React.Component {
             管理
           </button>
           <button
-            className="button is-danger"
+            className="button is-danger is-small"
             onClick={() => {
               this.handleDelete(this.props.name);
             }}
           >
             删除
           </button>
-          <button
-            className="button is-primary"
+          <a
+            className="button is-text is-small"
             onClick={() => {
               this.showZonefile(this.props.zone_file);
             }}
           >
             查看Zone文件
-          </button>
+          </a>
+          </div>
         </td>
       </tr>
     );
