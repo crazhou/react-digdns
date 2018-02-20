@@ -3,7 +3,10 @@ import DomainItem from "./DomainItem";
 import PropTypes from "prop-types";
 
 class DomainList extends React.Component {
+  
+  
   render() {
+    const { dispatch } = this.props;
     return (
       <table className="table is-fullwidth">
         <thead>
@@ -19,6 +22,7 @@ class DomainList extends React.Component {
               key={domain.name}
               name={domain.name}
               ttl={domain.ttl}
+              dispatch = {dispatch}
               zone_file={domain.zone_file}
             />
           )}
@@ -29,7 +33,8 @@ class DomainList extends React.Component {
 }
 
 DomainList.propTypes = {
-  domains: PropTypes.array
+  domains: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 export default DomainList

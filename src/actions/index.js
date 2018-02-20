@@ -2,6 +2,13 @@ import axios from 'axios'
 
 export const REQUEST_DOMAINS = 'REQUEST_DOMAINS'
 export const REVEIVE_DOMAINS = 'REVEIVE_DOMAINS'
+export const SHOW_ZONEFILE = 'SHOW_ZONEFILE'
+export const CLOSE_ZONEFILE = 'CLOSE_ZONEFILE'
+
+export const showZonefile = text => ({
+  type: SHOW_ZONEFILE,
+  text
+})
 
 /*
  * 发起一个请求域名列表的 Action
@@ -19,6 +26,7 @@ export const reveiveDomains = ({domains,meta}) =>({
   domains,
   total:meta.total
 })
+
 /*
  * 这一个异步的Action 触发函数
  */

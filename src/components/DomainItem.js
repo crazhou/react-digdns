@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import  { showZonefile } from '../actions'
 // 单个域名项目
 class DomainItem extends React.Component {
   render() {
@@ -39,7 +40,10 @@ class DomainItem extends React.Component {
     );
   }
 
-  showZonefile() {}
+  showZonefile(text) {
+    const {dispatch} = this.props;
+    dispatch(showZonefile(text));
+  }
 
   handelMange() {}
 
@@ -49,7 +53,8 @@ class DomainItem extends React.Component {
 DomainItem.propTypes = {
   name: PropTypes.string.isRequired,
   ttl: PropTypes.number.isRequired,
-  zone_file: PropTypes.string.isRequired
+  zone_file: PropTypes.string.isRequired,
+  dispatch : PropTypes.func.isRequired
 };
 
 export default DomainItem;
