@@ -40,7 +40,7 @@ class ZonefileModal extends React.Component {
 ZonefileModal.propTypes = {
   isActive: PropTypes.bool.isRequired,
   zone_file: PropTypes.string.isRequired,
-  dispatch: PropTypes.string.isRequired
+  dispatch: PropTypes.func.isRequired
 };
 
 export default ZonefileModal;

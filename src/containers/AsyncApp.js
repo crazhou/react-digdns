@@ -26,6 +26,7 @@ class AsyncApp extends React.Component {
 
   render() {
     const { domains, dispatch } = this.props;
+    // 显示zone_file 对话框
     const { modalZonefile: { isActive, zone_file } } = this.props;
     return (
       <div className="container">

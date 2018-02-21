@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import  { showZonefile } from '../actions'
+import { showZonefile, showDeleteDomain } from "../actions";
 // 单个域名项目
 class DomainItem extends React.Component {
   render() {
@@ -10,30 +10,30 @@ class DomainItem extends React.Component {
         <td>{this.props.ttl}</td>
         <td>
           <div className="buttons">
-          <button
-            className="button is-info is-small"
-            onClick={() => {
-              this.handelMange(this.props.name);
-            }}
-          >
-            管理
-          </button>
-          <button
-            className="button is-danger is-small"
-            onClick={() => {
-              this.handleDelete(this.props.name);
-            }}
-          >
-            删除
-          </button>
-          <a
-            className="button is-text is-small"
-            onClick={() => {
-              this.showZonefile(this.props.zone_file);
-            }}
-          >
-            查看Zone文件
-          </a>
+            <button
+              className="button is-info is-small"
+              onClick={() => {
+                this.handleMange(this.props.name);
+              }}
+            >
+              管理
+            </button>
+            <button
+              className="button is-danger is-small"
+              onClick={() => {
+                this.handleDelete(this.props.name);
+              }}
+            >
+              删除
+            </button>
+            <a
+              className="button is-text is-small"
+              onClick={() => {
+                this.showZonefile(this.props.zone_file);
+              }}
+            >
+              查看Zone文件
+            </a>
           </div>
         </td>
       </tr>
@@ -41,20 +41,24 @@ class DomainItem extends React.Component {
   }
 
   showZonefile(text) {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     dispatch(showZonefile(text));
   }
 
-  handelMange() {}
+  handleMange() {}
 
-  handleDelete() {}
+  handleDelete(domain) {
+    const { dispatch } = this.props;
+    console.log("Domain->", domain);
+    dispatch(showDeleteDomain(domain));
+  }
 }
 
 DomainItem.propTypes = {
   name: PropTypes.string.isRequired,
   ttl: PropTypes.number.isRequired,
   zone_file: PropTypes.string.isRequired,
-  dispatch : PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired
 };
 
 export default DomainItem;
