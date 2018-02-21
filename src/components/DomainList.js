@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 class DomainList extends React.Component {
   render() {
+    const { showZonefile, showDeleteDomain } = this.props;
     return (
       <table className="table is-fullwidth is-hoverable">
         <thead>
@@ -15,7 +16,12 @@ class DomainList extends React.Component {
         </thead>
         <tbody>
           {this.props.domains.map(domain => (
-            <DomainItem key={domain.name} {...domain} />
+            <DomainItem
+              key={domain.name}
+              {...domain}
+              showZonefile={showZonefile}
+              showDeleteDomain={showDeleteDomain}
+            />
           ))}
         </tbody>
       </table>

@@ -2,15 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import DomainList from "../components/DomainList";
+import DomainList from ".//DomainListF";
 import ZonefileModal from "../components/ZonefileModal";
 
-import {
-  CLOSE_ZONEFILE,
-  showZonefile,
-  showDeleteDomain,
-  fetchDomains
-} from "../actions";
+import { fetchDomains, CLOSE_ZONEFILE } from "../actions";
 
 class AsyncApp extends React.Component {
   componentDidMount() {
@@ -30,7 +25,11 @@ class AsyncApp extends React.Component {
   }
 
   render() {
-    const { domains, modalZonefile } = this.props;
+    const { domains, modalZonefile, dispatch } = this.props;
+
+    const closeZonefile = () => {
+      dispatch({ type: CLOSE_ZONEFILE });
+    };
     return (
       <div className="container">
         <nav className="level">
@@ -43,11 +42,11 @@ class AsyncApp extends React.Component {
             </button>
           </div>
         </nav>
-        <ZonefileModal {...modalZonefile} />
+        <ZonefileModal {...modalZonefile} handleClose={closeZonefile} />
         {domains.isFetching ? (
           <div className="notification">请求中...</div>
         ) : (
-          <DomainList domains={domains.list} />
+          <DomainList />
         )}
       </div>
     );
@@ -62,24 +61,8 @@ AsyncApp.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    domains: state.domains,
-    modalZonefile: state.modalZonefile
+    ...state
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-    showZonefile: text => {
-      dispatch(showZonefile(text));
-    },
-    closeZonefile: () => {
-      dispatch({ type: CLOSE_ZONEFILE });
-    },
-    showDeleteDomain: domain => {
-      dispatch(showDeleteDomain(domain));
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AsyncApp);
+export default connect(mapStateToProps)(AsyncApp);

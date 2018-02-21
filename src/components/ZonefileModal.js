@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 class ZonefileModal extends React.Component {
-  handleCloseModel(e) {}
-
   render() {
-    const { isActive, zone_file } = this.props;
+    const { isActive, zone_file, handleClose } = this.props;
     return (
       <div className={isActive ? "modal is-active" : "modal"}>
         <div className="modal-background" />
@@ -24,9 +22,7 @@ class ZonefileModal extends React.Component {
         <button
           className="modal-close is-large"
           aria-label="close"
-          onClick={e => {
-            this.handleCloseModel(e);
-          }}
+          onClick={handleClose}
         />
       </div>
     );
