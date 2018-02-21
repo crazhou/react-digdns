@@ -1,12 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CLOSE_ZONEFILE } from "../actions";
 
 class ZonefileModal extends React.Component {
-  handleCloseModel(e) {
-    const { dispatch } = this.props;
-    dispatch({ type: CLOSE_ZONEFILE });
-  }
+  handleCloseModel(e) {}
 
   render() {
     const { isActive, zone_file } = this.props;
@@ -39,8 +35,7 @@ class ZonefileModal extends React.Component {
 
 ZonefileModal.propTypes = {
   isActive: PropTypes.bool.isRequired,
-  zone_file: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
+  zone_file: PropTypes.string.isRequired
 };
 
 export default ZonefileModal;

@@ -3,10 +3,7 @@ import DomainItem from "./DomainItem";
 import PropTypes from "prop-types";
 
 class DomainList extends React.Component {
-  
-  
   render() {
-    const { dispatch } = this.props;
     return (
       <table className="table is-fullwidth is-hoverable">
         <thead>
@@ -17,15 +14,9 @@ class DomainList extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.domains.map(domain => 
-            <DomainItem
-              key={domain.name}
-              name={domain.name}
-              ttl={domain.ttl}
-              dispatch = {dispatch}
-              zone_file={domain.zone_file}
-            />
-          )}
+          {this.props.domains.map(domain => (
+            <DomainItem key={domain.name} {...domain} />
+          ))}
         </tbody>
       </table>
     );
@@ -33,8 +24,7 @@ class DomainList extends React.Component {
 }
 
 DomainList.propTypes = {
-  domains: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired
+  domains: PropTypes.array.isRequired
 };
 
-export default DomainList
+export default DomainList;

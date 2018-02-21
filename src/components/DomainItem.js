@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { showZonefile, showDeleteDomain } from "../actions";
 // 单个域名项目
 class DomainItem extends React.Component {
   render() {
@@ -41,24 +40,22 @@ class DomainItem extends React.Component {
   }
 
   showZonefile(text) {
-    const { dispatch } = this.props;
-    dispatch(showZonefile(text));
+    const { showZonefile } = this.props;
+    showZonefile(text);
   }
 
   handleMange() {}
 
   handleDelete(domain) {
-    const { dispatch } = this.props;
-    console.log("Domain->", domain);
-    dispatch(showDeleteDomain(domain));
+    const { showDeleteDomain } = this.props;
+    showDeleteDomain(domain);
   }
 }
 
 DomainItem.propTypes = {
   name: PropTypes.string.isRequired,
   ttl: PropTypes.number.isRequired,
-  zone_file: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
+  zone_file: PropTypes.string.isRequired
 };
 
 export default DomainItem;

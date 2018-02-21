@@ -1,9 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchDomains } from "../actions";
+
 import DomainList from "../components/DomainList";
 import ZonefileModal from "../components/ZonefileModal";
+
+import {
+  CLOSE_ZONEFILE,
+  showZonefile,
+  showDeleteDomain,
+  fetchDomains
+} from "../actions";
 /*
  * token "ca83505718c2ef26858e04a7adc35587c6140b40550c99a7e0cbc5104e926866"
  */
@@ -63,4 +70,19 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(AsyncApp);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    showZonefile: text => {
+      dispatch(showZonefile(text));
+    },
+    closeZonefile: () => {
+      dispatch({ type: CLOSE_ZONEFILE });
+    },
+    showDeleteDomain: domain => {
+      dispatch(showDeleteDomain(domain));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AsyncApp);
