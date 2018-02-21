@@ -11,9 +11,7 @@ import {
   showDeleteDomain,
   fetchDomains
 } from "../actions";
-/*
- * token "ca83505718c2ef26858e04a7adc35587c6140b40550c99a7e0cbc5104e926866"
- */
+
 class AsyncApp extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -32,25 +30,24 @@ class AsyncApp extends React.Component {
   }
 
   render() {
-    const { domains, dispatch } = this.props;
-    // 显示zone_file 对话框
-    const { modalZonefile: { isActive, zone_file } } = this.props;
+    const { domains, modalZonefile } = this.props;
     return (
       <div className="container">
         <nav className="level">
           <div className="level-left">
-            <button className="button is-primary">新增域名</button>
+            <button className="button is-primary">
+              <span className="icon">
+                <i className="fas fa-plus" />
+              </span>
+              <span>新增域名</span>
+            </button>
           </div>
         </nav>
-        <ZonefileModal
-          isActive={isActive}
-          zone_file={zone_file}
-          dispatch={dispatch}
-        />
+        <ZonefileModal {...modalZonefile} />
         {domains.isFetching ? (
           <div className="notification">请求中...</div>
         ) : (
-          <DomainList domains={domains.list} dispatch={dispatch} />
+          <DomainList domains={domains.list} />
         )}
       </div>
     );
