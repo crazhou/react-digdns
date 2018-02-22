@@ -96,12 +96,15 @@ export function deleteDomain(domain) {
       if (resp.status === 204) {
         // 204 表示删除 成功
         dispatch({
-          type: DELETE_DOMAIN_DONE
+          type: DELETE_DOMAIN_DONE,
+          domain
         });
+        dispatch(fetchDomains(token));
       } else {
         // 其它响应表示出错了
         dispatch({
-          type: DELETE_DOMAIN_FAIL
+          type: DELETE_DOMAIN_FAIL,
+          domain
         });
       }
     });

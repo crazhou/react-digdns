@@ -66,38 +66,29 @@ const modalDeleteDomain = (state = { isActive: false, domain: "" }, action) => {
   }
 };
 
-const deleteDomain = (
+const deleteDomainInfo = (
   state = { domain: "", isSuccess: false, isFetching: false },
   action
 ) => {
   switch (action.type) {
     case REQUEST_DEL_DOMAIN:
-      return Object.assign(
-        state,
-        {},
-        {
-          isSuccess: false,
-          isFetching: true
-        }
-      );
+      return Object.assign({}, state, {
+        domain: action.domain,
+        isSuccess: false,
+        isFetching: true
+      });
     case DELETE_DOMAIN_DONE:
-      return Object.assign(
-        state,
-        {},
-        {
-          isSuccess: true,
-          isFetching: false
-        }
-      );
+      return Object.assign({}, state, {
+        domain: action.domain,
+        isSuccess: true,
+        isFetching: false
+      });
     case DELETE_DOMAIN_FAIL:
-      return Object.assign(
-        state,
-        {},
-        {
-          isSuccess: false,
-          isFetching: false
-        }
-      );
+      return Object.assign({}, state, {
+        domain: action.domain,
+        isSuccess: false,
+        isFetching: false
+      });
     default:
       return state;
   }
@@ -115,7 +106,7 @@ const rootReducer = combineReducers({
   domains,
   modalZonefile,
   modalDeleteDomain,
-  deleteDomain
+  deleteDomainInfo
 });
 
 export default rootReducer;

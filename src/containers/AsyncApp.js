@@ -31,7 +31,13 @@ class AsyncApp extends React.Component {
   }
 
   render() {
-    const { domains, modalZonefile, modalDeleteDomain, dispatch } = this.props;
+    const {
+      domains,
+      modalZonefile,
+      modalDeleteDomain,
+      deleteDomainInfo,
+      dispatch
+    } = this.props;
 
     const closeZonefile = () => {
       dispatch({ type: CLOSE_ZONEFILE });
@@ -50,6 +56,7 @@ class AsyncApp extends React.Component {
         </nav>
         <DeleteModal
           {...modalDeleteDomain}
+          isFetching={deleteDomainInfo.isFetching}
           onConfirm={domain => {
             dispatch(deleteDomain(domain));
           }}

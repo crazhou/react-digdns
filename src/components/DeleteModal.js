@@ -2,7 +2,7 @@ import React from "react";
 
 class DeleteModal extends React.Component {
   render() {
-    const { isActive, domain, onConfirm, onCancel } = this.props;
+    const { isActive, domain, onConfirm, onCancel, isFetching } = this.props;
     return (
       <div className={"modal " + (isActive ? "is-active" : "")}>
         <div className="modal-background" />
@@ -18,7 +18,9 @@ class DeleteModal extends React.Component {
           </section>
           <footer className="modal-card-foot">
             <button
-              className="button is-small is-danger"
+              className={
+                "button is-danger is-small" + (isFetching ? " is-loading" : "")
+              }
               onClick={() => {
                 onConfirm(domain);
               }}
