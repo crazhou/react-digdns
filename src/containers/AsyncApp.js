@@ -4,8 +4,14 @@ import { connect } from "react-redux";
 
 import DomainList from ".//DomainListF";
 import ZonefileModal from "../components/ZonefileModal";
+import DeleteModal from "../components/DeleteModal";
 
-import { fetchDomains, CLOSE_ZONEFILE } from "../actions";
+import {
+  fetchDomains,
+  CLOSE_ZONEFILE,
+  CANCEL_DELETE_DOMAIN,
+  deleteDomain
+} from "../actions";
 
 class AsyncApp extends React.Component {
   componentDidMount() {
@@ -25,7 +31,7 @@ class AsyncApp extends React.Component {
   }
 
   render() {
-    const { domains, modalZonefile, dispatch } = this.props;
+    const { domains, modalZonefile, modalDeleteDomain, dispatch } = this.props;
 
     const closeZonefile = () => {
       dispatch({ type: CLOSE_ZONEFILE });
@@ -42,6 +48,15 @@ class AsyncApp extends React.Component {
             </button>
           </div>
         </nav>
+        <DeleteModal
+          {...modalDeleteDomain}
+          onConfirm={domain => {
+            dispatch(deleteDomain(domain));
+          }}
+          onCancel={e => {
+            dispatch({ type: CANCEL_DELETE_DOMAIN });
+          }}
+        />
         <ZonefileModal {...modalZonefile} handleClose={closeZonefile} />
         {domains.isFetching ? (
           <div className="notification">请求中...</div>

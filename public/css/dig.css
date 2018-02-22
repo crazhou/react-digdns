@@ -1,0 +1,12 @@
+.modal-card-foot {
+  justify-content: flex-end;
+  padding: 10px;
+  border-top: 0 none;
+  background-color: #fff;
+}
+.modal-card-head {
+  padding: 10px;
+}
+.modal-card-head .modal-card-title {
+  font-size: 1.2rem;
+}
