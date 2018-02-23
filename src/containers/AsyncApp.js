@@ -11,7 +11,8 @@ import {
   fetchDomains,
   CLOSE_ZONEFILE,
   CANCEL_DELETE_DOMAIN,
-  deleteDomain
+  deleteDomain,
+  addDomain
 } from "../actions";
 
 class AsyncApp extends React.Component {
@@ -46,8 +47,9 @@ class AsyncApp extends React.Component {
     return (
       <div className="container">
         <NewDomain
-          onSubmit={(a, b) => {
-            console.log("A->B", a, b);
+          onSubmit={domain => {
+            const ip = "9.9.9.9";
+            dispatch(addDomain(domain, ip));
           }}
         />
         <DeleteModal

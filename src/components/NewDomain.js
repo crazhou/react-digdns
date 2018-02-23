@@ -21,6 +21,7 @@ class NewDomain extends React.Component {
   }
   render() {
     const { onSubmit } = this.props;
+    let input;
     return (
       <div className="level">
         <div className="level-left">
@@ -33,14 +34,20 @@ class NewDomain extends React.Component {
                 onChange={e => {
                   this.handleChange(e);
                 }}
+                ref={node => {
+                  input = node;
+                }}
               />
             </div>
             <div className="control">
               <button
                 className="button is-primary"
-                disabled={this.state.hasError}
+                disabled={!this.state.value || this.state.hasError}
                 onClick={e => {
-                  onSubmit(this.state.value, e);
+                  if (this.state.hasError === false) {
+                    onSubmit(this.state.value);
+                    input.value = "";
+                  }
                 }}
               >
                 添加域名

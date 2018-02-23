@@ -20,6 +20,16 @@ export const REQUEST_DEL_DOMAIN = "REQUEST_DEL_DOMAIN";
 export const DELETE_DOMAIN_DONE = "DELETE_DOMAIN_DONE";
 export const DELETE_DOMAIN_FAIL = "DELETE_DOMAIN_FAIL";
 
+export const REQUEST_ADD_DOMAIN = "REQUEST_ADD_DOMAIN";
+export const ADD_DOMAIN_DONE = "ADD_DOMAIN_DONE";
+export const ADD_DOMAIN_ERROR = "ADD_DOMAIN_ERROR";
+
+export const requestAddDomain = (domain, ip) => ({
+  type: REQUEST_ADD_DOMAIN,
+  domain,
+  ip_address: ip
+});
+
 export const requestDelDomain = domain => ({
   type: REQUEST_DEL_DOMAIN,
   domain
@@ -104,6 +114,45 @@ export function deleteDomain(domain) {
         // 其它响应表示出错了
         dispatch({
           type: DELETE_DOMAIN_FAIL,
+          domain
+        });
+      }
+    });
+  };
+}
+
+export function addDomain(domain, ip) {
+  return function(dispatch, getState) {
+    // 发出一个事件
+    requestAddDomain(domain, ip);
+    const token = getState().token;
+
+    // 开始请求
+    return axios({
+      baseURL: "https://api.digitalocean.com/v2/",
+      url: "/domains",
+      method: "post",
+      data: {
+        name: domain,
+        ip_address: ip
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      }
+    }).then(function(resp) {
+      if (resp.status === 201 && "domain" in resp.data) {
+        // 204 表示删除 成功
+        dispatch({
+          type: ADD_DOMAIN_DONE,
+          domain
+        });
+        // 刷新域名列表
+        dispatch(fetchDomains(token));
+      } else {
+        // 其它响应表示出错了
+        dispatch({
+          type: ADD_DOMAIN_ERROR,
           domain
         });
       }
