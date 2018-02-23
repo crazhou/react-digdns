@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import DomainList from ".//DomainListF";
 import ZonefileModal from "../components/ZonefileModal";
 import DeleteModal from "../components/DeleteModal";
+import NewDomain from "../components/NewDomain";
 
 import {
   fetchDomains,
@@ -44,16 +45,7 @@ class AsyncApp extends React.Component {
     };
     return (
       <div className="container">
-        <nav className="level">
-          <div className="level-left">
-            <button className="button is-primary">
-              <span className="icon">
-                <i className="fas fa-plus" />
-              </span>
-              <span>新增域名</span>
-            </button>
-          </div>
-        </nav>
+        <NewDomain />
         <DeleteModal
           {...modalDeleteDomain}
           isFetching={deleteDomainInfo.isFetching}
