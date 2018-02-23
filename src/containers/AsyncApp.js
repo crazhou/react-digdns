@@ -45,7 +45,11 @@ class AsyncApp extends React.Component {
     };
     return (
       <div className="container">
-        <NewDomain />
+        <NewDomain
+          onSubmit={(a, b) => {
+            console.log("A->B", a, b);
+          }}
+        />
         <DeleteModal
           {...modalDeleteDomain}
           isFetching={deleteDomainInfo.isFetching}

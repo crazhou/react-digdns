@@ -13,3 +13,6 @@
 .container .level {
   margin-top: 36px;
 }
+.level .u-def {
+  margin-bottom: 0;
+}
