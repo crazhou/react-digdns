@@ -3,7 +3,7 @@
   "version": "1.2.1",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "cross-fetch": "^1.1.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
