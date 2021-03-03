@@ -9,7 +9,7 @@
     "express-session": "^1.15.6",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "pug": "^2.0.0-rc.4",
+    "pug": "^3.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^5.0.6",
